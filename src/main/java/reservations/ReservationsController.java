@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class ReservationsController {
 
-    @RequestMapping(value = "/", method = GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     @RequestBody
     public String index() {
         return "<h1>Reservation index!<h1>";
     }
 
-    @RequestMapping(value = "/health", method = GET)
+    @RequestMapping(value = "/health", method = RequestMethod.GET)
     @RequestBody
     public String health() {
         return "ok";
