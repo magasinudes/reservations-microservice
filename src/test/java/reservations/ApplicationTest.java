@@ -21,10 +21,14 @@ public class ApplicationTest {
     private MockMvc mvc;
 
     @Test
-    public void helloGradle() throws Exception {
+    public void HealthTest() throws Exception {
         mvc.perform(get("/"))
             .andExpect(status().isOk())
-            .andExpect(content().string("Greetings from Spring Boot!"));
+            .andExpect(content().string("<h1>Reservation index!<h1>"));
+
+        mvc.perform(get("/health"))
+            .andExpect(status().isOk())
+            .andExpect(content().string("ok"));
     }
 
 }

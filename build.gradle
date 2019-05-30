@@ -22,7 +22,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 bootJar {
-    baseName = 'reservations-world-java'
+    baseName = 'reservations'
     mainClassName = 'reservations.Application'
     version =  '0.1.0'
 }
