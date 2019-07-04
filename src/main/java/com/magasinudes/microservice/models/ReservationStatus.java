@@ -11,7 +11,8 @@ import java.util.Set;
 @Entity
 @Table(name = "reservation_statuses", schema = "public")
 public class ReservationStatus extends AuditModel {
-	@Id
+
+    @Id
     @GeneratedValue(generator = "reservation_status_generator")
     @SequenceGenerator(
             name = "reservation_status_generator",
