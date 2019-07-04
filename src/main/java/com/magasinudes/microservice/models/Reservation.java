@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name = "reservations", schema = "public")
 public class Reservation extends AuditModel {
 	private static final long serialVersionUID = -2250728570718420163L;
-    
+
 	@Id
     @GeneratedValue(generator = "reservation_generator")
     @SequenceGenerator(
