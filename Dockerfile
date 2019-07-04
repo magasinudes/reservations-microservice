@@ -2,7 +2,6 @@ FROM openjdk:8-jdk-slim as runtime
 
 WORKDIR /
 COPY    . .
-RUN     ./gradlew test build
 
 EXPOSE 5003
 
