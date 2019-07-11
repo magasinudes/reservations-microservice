@@ -18,8 +18,8 @@ public class ReservationsController {
 	private ReservationRepository reservationRepository;
 
 	@GetMapping("/reservations")
-	public Optional<Reservation> index(@PathVariable Long reservationID) {
-		return reservationRepository.findById(reservationID);
+	public Optional<Reservation> index(@PathVariable Long reservationId) {
+		return reservationRepository.findById(reservationId);
 	}
 
 	@PostMapping("/reservations")
@@ -28,21 +28,21 @@ public class ReservationsController {
 	}
 
 	@GetMapping("/reservations/{reservationId}")
-	public Optional<Reservation> show(@PathVariable Long reservationID) {
-		if (!reservationRepository.existsById(reservationID)) {
-			throw new RecordNotFoundException("No reservation found with id " + reservationID);
+	public Optional<Reservation> show(@PathVariable Long reservationId) {
+		if (!reservationRepository.existsById(reservationId)) {
+			throw new RecordNotFoundException("No reservation found with id " + reservationId);
 		}
 
-		return reservationRepository.findById(reservationID);
+		return reservationRepository.findById(reservationId);
 	}
 
 	@PutMapping("/reservations/{reservationId}")
-	public Long update(@PathVariable Long reservationID, @Valid @RequestBody Reservation data) {
-		if (!reservationRepository.existsById(reservationID)) {
-			throw new RecordNotFoundException("No reservation found with id " + reservationID);
+	public Long update(@PathVariable Long reservationId, @Valid @RequestBody Reservation data) {
+		if (!reservationRepository.existsById(reservationId)) {
+			throw new RecordNotFoundException("No reservation found with id " + reservationId);
 		}
 
-		return reservationRepository.findById(reservationID).map(reservation -> {
+		return reservationRepository.findById(reservationId).map(reservation -> {
 			if (data.getStartAt() != null) {
 				reservation.setStartAt(data.getStartAt());
 			}
@@ -59,18 +59,18 @@ public class ReservationsController {
 				reservation.setResourceId(data.getResourceId());
 			}
 			return reservationRepository.save(reservation).getId();
-		}).orElseThrow(() -> new RecordNotFoundException("No reservation found with id " + reservationID));
+		}).orElseThrow(() -> new RecordNotFoundException("No reservation found with id " + reservationId));
 	}
 
 	@DeleteMapping("/reservations/{reservationId}")
-	public ResponseEntity<?> delete(@PathVariable Long reservationID) {
-		if (!reservationRepository.existsById(reservationID)) {
-			throw new RecordNotFoundException("No reservation found with id " + reservationID);
+	public ResponseEntity<?> delete(@PathVariable Long reservationId) {
+		if (!reservationRepository.existsById(reservationId)) {
+			throw new RecordNotFoundException("No reservation found with id " + reservationId);
 		}
 
-		return reservationRepository.findById(reservationID).map(reservation -> {
+		return reservationRepository.findById(reservationId).map(reservation -> {
 			reservationRepository.delete(reservation);
 			return ResponseEntity.ok().build();
-		}).orElseThrow(() -> new RecordNotFoundException("No reservation found with id " + reservationID));
+		}).orElseThrow(() -> new RecordNotFoundException("No reservation found with id " + reservationId));
 	}
 }
