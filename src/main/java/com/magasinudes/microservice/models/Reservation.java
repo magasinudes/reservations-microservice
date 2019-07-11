@@ -40,8 +40,8 @@ public class Reservation extends AuditModel {
     // Associations
     // ------------
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "reservation_status_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_status_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ReservationStatus reservationStatus;
 
