@@ -5,6 +5,8 @@ import com.magasinudes.microservice.models.Reservation;
 import com.magasinudes.microservice.repositories.ReservationRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +20,8 @@ public class ReservationsController {
 	private ReservationRepository reservationRepository;
 
 	@GetMapping("/reservations")
-	public Optional<Reservation> index(@PathVariable Long reservationId) {
-		return reservationRepository.findById(reservationId);
+	public Page<Reservation> index(Pageable pageable) {
+		return reservationRepository.findAll(pageable);
 	}
 
 	@PostMapping("/reservations")
